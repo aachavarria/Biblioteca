@@ -1,0 +1,38 @@
+<form id="bookForm" name="formBook" ng-submit="bookCtrl.addBook(library)">
+	<fieldset>
+		<!-- Text input-->
+		<div class="form-group">
+			<label for="autor">Autor</label>  
+			<input id="autor" name="autor" type="text" ng-model="bookCtrl.book.autor" class="form-control" placeholder="Patrick Vein" required>				    
+		</div>
+		<div class="form-group">
+			<label for="nombre">Libro</label>  
+			<input id="nombre" name="nombre" type="text" ng-model="bookCtrl.book.name" class="form-control" placeholder="La noche oscura" required>				    
+		</div>
+		<!-- Text input-->
+		<div class="form-group">
+			<label for="paginas">Páginas</label>  
+			<input id="paginas" name="paginas" type="number" ng-model="bookCtrl.book.pages" class="form-control" placeholder="550" required>				    
+		</div>
+		<!-- Text input-->
+		<div class="form-group">
+			<label for="genero">Género</label>  
+			<input id="genero" name="genero" type="text" ng-model="bookCtrl.book.gender" class="form-control" placeholder="Ciencia ficción" required>				    
+		</div>
+		<!-- Text input-->
+		<div class="form-group">
+			<label for="anno">Año</label>  
+			<input id="anno" name="anno" type="number" ng-model="bookCtrl.book.age" class="form-control" placeholder="2015" required>				    
+		</div>
+		<!-- Text input-->
+		<div class="form-group">
+			<label for="clasificacion">Clasificación</label>  
+			<input id="clasificacion" name="clasificacion" type="number" ng-model="bookCtrl.book.rated" class="form-control" placeholder="5" required>				    
+		</div>
+		<div class="form-group">
+			<label for="imagen">Imagen</label>  
+			<input id="imagen" name="imagen" type="text" ng-model="bookCtrl.book.img" class="form-control" placeholder="img/imagen.png" required>				    
+		</div>
+		<input type="submit" value="Agregar" class="btn btn-xs btn btn-success" >
+	</fieldset>
+</form>

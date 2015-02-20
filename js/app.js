@@ -19,12 +19,29 @@ app.filter('startFrom', function() {
         return input.slice(start);
  		}
 });
-
+/*
 app.controller("NewBookController",function(){
 	this.book ={};
 		this.addBook = function(library) {
 		  library.books.push(this.book);
 		  $('.modal').modal('hide')
+	};
+});
+*/
+
+app.directive('bookForm', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'formBook.html',
+		controller:function(){
+			console.log("cosas");
+			this.book ={};
+			this.addBook = function(library) {
+				  library.books.push(this.book);
+				  $('.modal').modal('hide')
+			};
+		},
+		controllerAs: 'bookCtrl'
 	};
 });
 
