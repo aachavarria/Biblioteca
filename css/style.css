@@ -1,0 +1,66 @@
+body {
+	padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.portfolio-item {
+	margin-bottom: 25px;
+}
+
+footer {
+	margin: 50px 0;
+}
+
+.light {
+	color: #B3B2B2;
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+ul li{
+	list-style: none;
+}
+ul{
+	padding: 0;
+}
+
+/*rating*/
+.rating {
+  font: 24px Georgia, serif;
+  display: inline-block;
+}
+
+.rating > .gold {
+  color: gold;
+}
+.img-responsive{
+	width: 700px;
+	height: 400px;
+}
+.filter-button{
+	margin-left: 20px;
+}
+
+.pager button:hover, .pager button:focus {
+	text-decoration: none;
+	background-color: #eee;
+}
+.pager button {
+	color: #337ab7;
+	display: inline-block;
+	padding: 5px 14px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 15px;
+}
+
+button:hover, button:focus {
+	color: #23527c;
+	text-decoration: underline;
+}
+
+.clear{
+	clear:both;
+}
+#bookForm{
+	padding: 20px 60px 20px 60px;
+}

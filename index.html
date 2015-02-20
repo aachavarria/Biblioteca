@@ -1,0 +1,190 @@
+<html ng-app="store">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Biblioteca</title>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body ng-controller="BooksController as library">
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Bookstoyu</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="index.html">Libros</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+		<!-- Page Header -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Libros
+					<small>Para tí</small>
+					<a class="btn btn-xs btn btn-success" target="_blank" data-toggle="modal" data-target=".bs-modal-lg-1" >Nuevo Libro</a>
+				</h1>
+			</div>
+			<div class="modal fade bs-modal-lg-1 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
+				<div class="modal-dialog modal-xs">
+					<div class="modal-content" ng-controller="NewBookController as bookCtrl" >
+						<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       				<h4 class="modal-title">Nuevo Libro</h4>
+      			</div>
+						<form id="bookForm" name="formBook" ng-submit="bookCtrl.addBook(library)">
+							<fieldset>
+								<!-- Text input-->
+								<div class="form-group">
+								  <label for="autor">Autor</label>  
+								  <input id="autor" name="autor" type="text" ng-model="bookCtrl.book.autor" class="form-control" placeholder="Patrick Vein" required>				    
+								</div>
+								<div class="form-group">
+								  <label for="nombre">Libro</label>  
+								  <input id="nombre" name="nombre" type="text" ng-model="bookCtrl.book.name" class="form-control" placeholder="La noche oscura" required>				    
+								</div>
+								<!-- Text input-->
+								<div class="form-group">
+								  <label for="paginas">Páginas</label>  
+								  <input id="paginas" name="paginas" type="number" ng-model="bookCtrl.book.pages" class="form-control" placeholder="550" required>				    
+								</div>
+								<!-- Text input-->
+								<div class="form-group">
+								  <label for="genero">Género</label>  
+								  <input id="genero" name="genero" type="text" ng-model="bookCtrl.book.gender" class="form-control" placeholder="Ciencia ficción" required>				    
+								</div>
+								<!-- Text input-->
+								<div class="form-group">
+								  <label for="anno">Año</label>  
+								  <input id="anno" name="anno" type="number" ng-model="bookCtrl.book.age" class="form-control" placeholder="2015" required>				    
+								</div>
+								<!-- Text input-->
+								<div class="form-group">
+								  <label for="clasificacion">Clasificación</label>  
+								  <input id="clasificacion" name="clasificacion" type="number" ng-model="bookCtrl.book.rated" class="form-control" placeholder="5" required>				    
+								</div>
+								<div class="form-group">
+								  <label for="imagen">Imagen</label>  
+								  <input id="imagen" name="imagen" type="text" ng-model="bookCtrl.book.img" class="form-control" placeholder="img/imagen.png" required>				    
+								</div>
+								<input type="submit" value="Agregar" class="btn btn-xs btn btn-success" >
+							</fieldset>
+							</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+		<div class="container">
+			<div id="filter-panel" class="filter-panel collapse in" style="height: auto;">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form class="form-inline" role="form">
+							<div class="form-group">
+								<label class="filter-col" style="margin-right:0;" for="pref-perpage">Resultados por página: </label>
+								<select ng-model="pageSize" class="form-control" ng-init="pageSize = 10">
+			            <option value=1>1</option>
+			            <option value=2>2</option>
+			            <option value=3>3</option>
+			            <option value=4>4</option>
+			            <option value=5>5</option>
+			            <option value=10>10</option>
+			            <option value=15>15</option>
+			          </select>                              
+							</div> <!-- form group [rows] -->
+							<div class="form-group">
+								<label class="filter-col" style="margin-right:0;" for="pref-search">Palabra Clave: </label>
+								<input type="text" class="form-control input-sm" id="pref-search" ng-model="palabra">
+							</div><!-- form group [search] -->
+							<div class="form-group">
+								<label class="filter-col" style="margin-right:0;" for="pref-orderby">Ordenar por : </label>
+								<select ng-model="orderProp" class="form-control" ng-init="orderProp = 'name'">
+			            <option value="name">Alfabético</option>
+			            <option value="-age">Novedades</option>
+			            <option value="-rated">Clasificación</option>
+			          </select>                                
+							</div> <!-- form group [order by] --> 
+							<div class="form-group">    
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>    
+	</div>
+		<!-- Books Row -->
+		<div class="container">
+			<div class="row">
+		    <div class="col-md-3 portfolio-item" ng-class="{ clear:$index % 4 == 0}" ng-repeat="books in library.books  | startFrom: currentPage*pageSize | filter: palabra | orderBy:orderProp | limitTo: pageSize ">
+					<a href="#">
+						<img class="img-responsive" ng-src="{{books.img}}">
+					</a>
+					<h3>
+						<a href="#">{{books.name}}</a>
+					</h3>
+					<ul>
+						<li><span class="light">Autor:</span>{{books.author}}</li>
+						<li><span class="light">Nº de páginas:</span>{{books.pages}}</li>
+						<li><span class="light">Género:</span>{{books.gender}}</li>
+						<li><span class="light">Año:</span>{{books.age}}</li>
+						<li><span class="light">Calificación:</span>
+							<div class="rating">
+								<span ng-class="{ gold:books.rated >= 1}">☆</span>
+								<span ng-class="{ gold:books.rated >= 2}">☆</span>
+								<span ng-class="{ gold:books.rated >= 3}">☆</span>
+								<span ng-class="{ gold:books.rated >= 4}">☆</span>
+								<span ng-class="{ gold:books.rated == 5}">☆</span>
+							</div>
+						</li>
+					</ul>
+		    </div>
+	  	</div>
+			<nav>
+			  <ul class="pager">
+			  	<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+	        	Previous
+	    		</button>
+	    			{{currentPage+1}}/{{numberOfPages()}}
+	    		<button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+	        	Next
+	    		</button>
+			  </ul>
+			</nav>
+		</div>
+
+		<!-- /.row -->
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright © AaronWebSite 2015</p>
+				</div>
+			</div>
+			<!-- /.row -->
+		</footer>
+
+	</div>
+	<!-- /.container -->
+	<script src="js/jquery.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
