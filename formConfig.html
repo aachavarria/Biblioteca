@@ -1,0 +1,13 @@
+
+<form id="bookForm" name="formBook" ng-submit="configCtrl.saveConfig(library)">
+	<fieldset>	
+		<div class="form-group">
+			<label class="filter-col" style="margin-right:0;" for="pref-search">Género favorito: </label>
+			<select class="form-control" name="gender" id="gender" ng-model="configCtrl.newfavGender" ng-init="configCtrl.newfavGender = 'none'" required>
+				<option value="none">Ninguno</option>
+				<option value="{{genders}}" ng-repeat="genders in gender" >{{genders}}</option>
+			</select>
+		</div>
+		<input type="submit" value="Guardar" class="btn btn-xs btn btn-success" >
+	</fieldset>
+</form>

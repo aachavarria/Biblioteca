@@ -25,6 +25,16 @@
 				<ul class="nav navbar-nav">
 					<li>
 						<a href="index.html">Libros</a>
+					</li>				
+
+					<li>
+						<a target="_blank" data-toggle="modal" data-target=".bs-modal-lg-1" >Nuevo Libro</a>
+					</li>
+					<li>
+						<a target="_blank" data-toggle="modal" data-target=".bs-modal-xs-2" >Nuevo Género</a>
+					</li>
+					<li>
+						<a target="_blank" data-toggle="modal" data-target=".bs-modal-xs-3" ><img class="cheto" src="img/config.png" alt=""></a>
 					</li>
 				</ul>
 			</div>
@@ -35,14 +45,17 @@
 
 	<!-- Page Content -->
 	<div class="container">
+		<div class="row">
+			<book-favorite></book-favorite>
+		</div>
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Libros
+				<h1 class="page-header">Biblioteca
 					<small>Para tí</small>
-					<a class="btn btn-xs btn btn-success" target="_blank" data-toggle="modal" data-target=".bs-modal-lg-1" >Nuevo Libro</a>
 				</h1>
 			</div>
+			<!-- Form Modal -->
 			<div class="modal fade bs-modal-lg-1 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
 				<div class="modal-dialog modal-xs">
 					<div class="modal-content">
@@ -54,40 +67,42 @@
 					</div>
 				</div>
 			</div>
+			<!-- /.form Modal -->
+
+			<!-- gender Modal -->
+			<div id="genderModal" class="modal fade bs-modal-xs-2 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
+				<div class="modal-dialog modal-xs">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Nuevo Género</h4>
+						</div>
+							<gender-form></gender-form>
+					</div>
+				</div>
+			</div>
+			<!-- /.gender Modal -->
+
+			<div id="configModal" class="modal fade bs-modal-xs-3 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
+				<div class="modal-dialog modal-xs">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Configuración</h4>
+						</div>
+							<config-form></config-form>
+					</div>
+				</div>
+			</div>
+			<!-- /.gender Modal -->
+
 		</div>
 		<!-- /.row -->
 		<div class="container">
 			<div id="filter-panel" class="filter-panel collapse in" style="height: auto;">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form class="form-inline" role="form">
-							<div class="form-group">
-								<label class="filter-col" style="margin-right:0;" for="pref-perpage">Resultados por página: </label>
-								<select ng-model="pageSize" class="form-control" ng-init="pageSize = 10">
-									<option value=1>1</option>
-									<option value=2>2</option>
-									<option value=3>3</option>
-									<option value=4>4</option>
-									<option value=5>5</option>
-									<option value=10>10</option>
-									<option value=15>15</option>
-								</select>                              
-							</div> <!-- form group [rows] -->
-							<div class="form-group">
-								<label class="filter-col" style="margin-right:0;" for="pref-search">Palabra Clave: </label>
-								<input type="text" class="form-control input-sm" id="pref-search" ng-model="palabra">
-							</div><!-- form group [search] -->
-							<div class="form-group">
-								<label class="filter-col" style="margin-right:0;" for="pref-orderby">Ordenar por : </label>
-								<select ng-model="orderProp" class="form-control" ng-init="orderProp = 'name'">
-									<option value="name">Alfabético</option>
-									<option value="-age">Novedades</option>
-									<option value="-rated">Clasificación</option>
-								</select>                                
-							</div> <!-- form group [order by] --> 
-							<div class="form-group">    
-							</div>
-						</form>
+						<search-panel></search-panel>
 					</div>
 				</div>
 			</div>    
@@ -95,44 +110,12 @@
 		<!-- Books Row -->
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 portfolio-item" ng-class="{ clear:$index % 4 == 0}" ng-repeat="books in library.books  | startFrom: currentPage*pageSize | filter: palabra | orderBy:orderProp | limitTo: pageSize ">
-					<a href="#">
-						<img class="img-responsive" ng-src="{{books.img}}">
-					</a>
-					<h3>
-						<a href="#">{{books.name}}</a>
-					</h3>
-					<ul>
-						<li><span class="light">Autor:</span>{{books.author}}</li>
-						<li><span class="light">Nº de páginas:</span>{{books.pages}}</li>
-						<li><span class="light">Género:</span>{{books.gender}}</li>
-						<li><span class="light">Año:</span>{{books.age}}</li>
-						<li><span class="light">Calificación:</span>
-							<div class="rating">
-								<span ng-class="{ gold:books.rated >= 1}">☆</span>
-								<span ng-class="{ gold:books.rated >= 2}">☆</span>
-								<span ng-class="{ gold:books.rated >= 3}">☆</span>
-								<span ng-class="{ gold:books.rated >= 4}">☆</span>
-								<span ng-class="{ gold:books.rated == 5}">☆</span>
-							</div>
-						</li>
-					</ul>
-				</div>
+				<book-info></book-info>
 			</div>
-			<nav>
-				<ul class="pager">
-					<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
-						Previous
-					</button>
-					{{currentPage+1}}/{{numberOfPages()}}
-					<button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-						Next
-					</button>
-				</ul>
-			</nav>
+				<pagination></pagination>
 		</div>
-
 		<!-- /.row -->
+
 		<!-- Footer -->
 		<footer>
 			<div class="row">
@@ -142,7 +125,6 @@
 			</div>
 			<!-- /.row -->
 		</footer>
-
 	</div>
 	<!-- /.container -->
 	<script src="js/jquery.js"></script>

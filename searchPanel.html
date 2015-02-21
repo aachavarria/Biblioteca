@@ -1,0 +1,32 @@
+<form class="form-inline" role="form">
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-perpage">Resultados por página: </label>
+		<select ng-model="pageSize" class="form-control" ng-init="pageSize = 10">
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+			<option value=4>4</option>
+			<option value=5>5</option>
+			<option value=10>10</option>
+			<option value=15>15</option>
+		</select>                              
+	</div> <!-- form group [rows] -->
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-search">Palabra Clave: </label>
+		<input type="text" class="form-control input-sm" id="pref-search" ng-model="palabra">
+	</div><!-- form group [search] -->
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-orderby">Ordenar por : </label>
+		<select ng-model="orderProp" class="form-control" ng-init="orderProp = 'name'">
+			<option value="name">Alfabético</option>
+			<option value="-age">Novedades</option>
+			<option value="-rated">Clasificación</option>
+		</select>                                
+	</div> <!-- form group [order by] --> 
+	<div class="form-group">
+		<label class="filter-col" style="margin-right:0;" for="pref-search">Género: </label>
+		<select name="gender" id="gender" ng-model="search.gender" class="form-control">
+			<option value="{{genders}}" ng-repeat="genders in gender" >{{genders}}</option>
+		</select>
+	</div><!-- form group [search] -->
+</form>

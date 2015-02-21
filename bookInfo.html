@@ -1,0 +1,23 @@
+<div class="col-md-3 portfolio-item" ng-class="{ clear:$index % 4 == 0}" ng-repeat="books in library.books  | startFrom: currentPage*pageSize | filter: palabra | filter:search:strict | orderBy:orderProp | limitTo: pageSize ">
+	<a href="#">
+		<img class="img-responsive img-item" ng-src="{{books.img}}">
+	</a>
+	<h3>
+		<a href="#">{{books.name}}</a>
+	</h3>
+	<ul>
+		<li><span class="light">Autor:</span>{{books.author}}</li>
+		<li><span class="light">Nº de páginas:</span>{{books.pages}}</li>
+		<li><span class="light">Género:</span>{{books.gender}}</li>
+		<li><span class="light">Año:</span>{{books.age}}</li>
+		<li><span class="light">Calificación:</span>
+			<div class="rating">
+				<span ng-class="{ gold:books.rated >= 1}">☆</span>
+				<span ng-class="{ gold:books.rated >= 2}">☆</span>
+				<span ng-class="{ gold:books.rated >= 3}">☆</span>
+				<span ng-class="{ gold:books.rated >= 4}">☆</span>
+				<span ng-class="{ gold:books.rated == 5}">☆</span>
+			</div>
+		</li>
+	</ul>
+</div>

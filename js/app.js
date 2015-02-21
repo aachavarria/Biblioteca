@@ -3,6 +3,8 @@ var app = angular.module('store', []);
 
 app.controller('BooksController',function($scope){
 	this.books = books;
+	$scope.gender = gender;
+	$scope.favGender = "none";
 	$scope.currentPage = 0;
 	$scope.data = books;
   //return de numer of pages 
@@ -19,22 +21,12 @@ app.filter('startFrom', function() {
         return input.slice(start);
  		}
 });
-/*
-app.controller("NewBookController",function(){
-	this.book ={};
-		this.addBook = function(library) {
-		  library.books.push(this.book);
-		  $('.modal').modal('hide')
-	};
-});
-*/
 
 app.directive('bookForm', function(){
 	return{
 		restrict: 'E',
 		templateUrl: 'formBook.html',
 		controller:function(){
-			console.log("cosas");
 			this.book ={};
 			this.addBook = function(library) {
 				  library.books.push(this.book);
@@ -44,6 +36,67 @@ app.directive('bookForm', function(){
 		controllerAs: 'bookCtrl'
 	};
 });
+
+app.directive('genderForm', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'formGender.html',
+		controller:function($scope){
+			this.newGender = "";
+			this.addGender = function(library) {
+				  $scope.gender.push(this.newGender);
+				  $('#genderModal').modal('hide')
+			};
+		},
+		controllerAs: 'genderCtrl'
+	};
+});
+
+app.directive('configForm', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'formConfig.html',
+		controller:function($scope){
+			this.newfavGender = "";
+			this.saveConfig = function(library) {
+				  $scope.favGender = this.newfavGender;
+				  $('#configModal').modal('hide')
+			};
+		},
+		controllerAs: 'configCtrl'
+	};
+});
+
+app.directive('bookInfo', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'bookInfo.html',
+	};
+});
+
+app.directive('bookFavorite', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'bookFav.html',
+	};
+});
+
+app.directive('searchPanel', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'searchPanel.html',
+	};
+});
+
+app.directive('pagination', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'pagination.html',
+	};
+});
+
+
+var gender = ["Fantasía épica","Literatura juvenil","Ciencia ficción","Mitología griega"];
 
 var books =[
 
@@ -84,7 +137,7 @@ var books =[
 	img:'img/mismaestrella.jpg'
 },
 {
-	name: "El juego de Ender",
+	name: "Literatura juvenil",
 	author: 'Orson Scott Card',
 	pages: '180',
 	gender : 'Ciencia ficción',

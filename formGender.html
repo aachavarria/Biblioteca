@@ -1,0 +1,11 @@
+
+<form id="bookForm" name="formBook" ng-submit="genderCtrl.addGender(library)">
+	<fieldset>
+		<!-- Text input-->
+		<div class="form-group">
+			<label for="gender">Género</label>  
+			<input id="gender" name="gender" type="text" ng-model="genderCtrl.newGender" class="form-control" placeholder="Mitología griega" required>				    
+		</div>
+		<input type="submit" value="Agregar" class="btn btn-xs btn btn-success" >
+	</fieldset>
+</form>
