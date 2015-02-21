@@ -3,6 +3,9 @@ var app = angular.module('store', []);
 
 app.controller('BooksController',function($scope){
 	this.books = books;
+	$scope.user = "Usuario"
+	$scope.pass = "pass"
+	$scope.login = false;
 	$scope.gender = gender;
 	$scope.favGender = "none";
 	$scope.currentPage = 0;
@@ -31,6 +34,7 @@ app.directive('bookForm', function(){
 			this.addBook = function(library) {
 				  library.books.push(this.book);
 				  $('.modal').modal('hide')
+				  this.book ={};
 			};
 		},
 		controllerAs: 'bookCtrl'
@@ -46,6 +50,7 @@ app.directive('genderForm', function(){
 			this.addGender = function(library) {
 				  $scope.gender.push(this.newGender);
 				  $('#genderModal').modal('hide')
+				  this.newGender = "";
 			};
 		},
 		controllerAs: 'genderCtrl'
@@ -92,6 +97,13 @@ app.directive('pagination', function(){
 	return{
 		restrict: 'E',
 		templateUrl: 'pagination.html',
+	};
+});
+
+app.directive('home', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'home.html',
 	};
 });
 

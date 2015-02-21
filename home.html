@@ -1,0 +1,116 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">{{user}}</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html">Libros</a>
+				</li>				
+
+				<li>
+					<a target="_blank" data-toggle="modal" data-target=".bs-modal-lg-1" >Nuevo Libro</a>
+				</li>
+				<li>
+					<a target="_blank" data-toggle="modal" data-target=".bs-modal-xs-2" >Nuevo Género</a>
+				</li>
+				<li>
+					<a target="_blank" data-toggle="modal" data-target=".bs-modal-xs-3" ><img class="cheto" src="img/config.png" alt=""></a>
+				</li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+	<div class="row">
+		<book-favorite></book-favorite>
+	</div>
+	<!-- Page Header -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Biblioteca
+				<small>Para tí</small>
+			</h1>
+		</div>
+		<!-- Form Modal -->
+		<div class="modal fade bs-modal-lg-1 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
+			<div class="modal-dialog modal-xs">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Nuevo Libro</h4>
+					</div>
+						<book-form></book-form>
+				</div>
+			</div>
+		</div>
+		<!-- /.form Modal -->
+
+		<!-- gender Modal -->
+		<div id="genderModal" class="modal fade bs-modal-xs-2 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
+			<div class="modal-dialog modal-xs">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Nuevo Género</h4>
+					</div>
+						<gender-form></gender-form>
+				</div>
+			</div>
+		</div>
+		<!-- /.gender Modal -->
+
+		<div id="configModal" class="modal fade bs-modal-xs-3 in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: none;">
+			<div class="modal-dialog modal-xs">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Configuración</h4>
+					</div>
+						<config-form></config-form>
+				</div>
+			</div>
+		</div>
+		<!-- /.gender Modal -->
+
+	</div>
+	<!-- /.row -->
+	<div class="container">
+		<div id="filter-panel" class="filter-panel collapse in" style="height: auto;">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<search-panel></search-panel>
+				</div>
+			</div>
+		</div>    
+	</div>
+	<!-- Books Row -->
+	<div class="container">
+		<div class="row">
+			<book-info></book-info>
+		</div>
+			<pagination></pagination>
+	</div>
+	<!-- /.row -->
+
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright © AaronWebSite 2015</p>
+			</div>
+		</div>
+		<!-- /.row -->
+	</footer>
+</div>

@@ -15,10 +15,15 @@
 			<input id="paginas" name="paginas" type="number" ng-model="bookCtrl.book.pages" class="form-control" placeholder="550" required>				    
 		</div>
 		<!-- Text input-->
+
 		<div class="form-group">
-			<label for="genero">Género</label>  
-			<input id="genero" name="genero" type="text" ng-model="bookCtrl.book.gender" class="form-control" placeholder="Ciencia ficción" required>				    
+			<label class="filter-col" style="margin-right:0;" for="pref-search">Género favorito: </label>
+			<select class="form-control" name="gender" id="gender" ng-model="bookCtrl.book.gender" required>
+				<option value="">Ninguno</option>
+				<option value="{{genders}}" ng-repeat="genders in gender" >{{genders}}</option>
+			</select>
 		</div>
+
 		<!-- Text input-->
 		<div class="form-group">
 			<label for="anno">Año</label>  

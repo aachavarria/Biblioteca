@@ -1,7 +1,12 @@
 
-	<h1 class="page-header">Recomendado
+	<h1 class="page-header" ng-if="favGender != 'none'" >Recomendado
 		<small>Para tí</small>
 	</h1>
+
+	<h1 class="page-header" ng-if="favGender == 'none'" >Novedades
+		<small>Por Género</small>
+	</h1>
+
 	<div class="well">
 		<div id="myCarousel" class="carousel slide">
 			<!-- Carousel items -->
@@ -10,7 +15,7 @@
 					<div class="item active">
 					<span class="label label-success book-title">{{favGender}}</span>
 						<div class="row">
-							<div class="col-xs-3" ng-repeat="books in library.books | filter:favGender | orderBy:rated | limitTo: 4"><img class="fav-item" ng-src="{{books.img}}" alt="Image" class="img-responsive">
+							<div class="col-xs-3" ng-repeat="books in library.books | filter:favGender  | limitTo: 4 | orderBy:'-rated'"><img class="fav-item" ng-src="{{books.img}}" alt="Image" class="img-responsive">
 							</div>
 						</div>
 						<!--/row-->
@@ -19,7 +24,7 @@
 				<div class="item" ng-repeat="genders in gender" ng-if="genders != favGender">
 					<span class="label label-success book-title">{{genders}}</span>
 					<div class="row">
-						<div class="col-xs-3" ng-repeat="books in library.books | filter:genders | orderBy:rated | limitTo: 4"><img class="fav-item" ng-src="{{books.img}}" alt="Image" class="img-responsive">
+						<div class="col-xs-3" ng-repeat="books in library.books | filter:genders  | limitTo: 4 | orderBy:'-rated'"><img class="fav-item" ng-src="{{books.img}}" alt="Image" class="img-responsive">
 						</div>
 					</div>
 					<!--/row-->
@@ -31,9 +36,12 @@
 				<div class="item" ng-class="{active:$index == 0}" ng-repeat="genders in gender">
 					<span class="label label-success book-title">{{genders}}</span>
 					<div class="row">
-						<div class="col-xs-3" ng-repeat="books in library.books | filter:genders | orderBy:rated | limitTo: 4"><img class="fav-item" ng-src="{{books.img}}" alt="Image" class="img-responsive">
+						<div class="col-xs-3" ng-repeat="books in library.books | filter:genders  | limitTo: 4 | orderBy:'-rated'">
+							<img class="fav-item" ng-src="{{books.img}}" alt="Image" class="img-responsive">
 						</div>
-					</div>
+						<div class="col-xs-3" ng-show="(library.books | filter:genders).length == 0">
+							<img class="fav-item" src="img/nodisponible.png" alt="Image" class="img-responsive">
+						</div>
 				</div>
 			</div>
 
