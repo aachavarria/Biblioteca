@@ -12,14 +12,13 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="index.html">Libros</a>
-				</li>				
-
-				<li>
 					<a target="_blank" data-toggle="modal" data-target=".bs-modal-lg-1" >Nuevo Libro</a>
 				</li>
 				<li>
 					<a target="_blank" data-toggle="modal" data-target=".bs-modal-xs-2" >Nuevo Género</a>
+				</li>
+				<li>
+					<a ng-click="cerrar()">Salir</a>
 				</li>
 				<li>
 					<a target="_blank" data-toggle="modal" data-target=".bs-modal-xs-3" ><img class="cheto" src="img/config.png" alt=""></a>
@@ -100,7 +99,17 @@
 		<div class="row">
 			<book-info></book-info>
 		</div>
-			<pagination></pagination>
+			<nav>
+	<ul class="pager">
+		<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+			Previous
+		</button>
+		{{currentPage+1}}/{{numberOfPages()}}
+		<button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+			Next
+		</button>
+	</ul>
+</nav>
 	</div>
 	<!-- /.row -->
 

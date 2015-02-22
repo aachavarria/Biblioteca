@@ -1,7 +1,7 @@
 <form class="form-inline" role="form">
 	<div class="form-group">
 		<label class="filter-col" style="margin-right:0;" for="pref-perpage">Resultados por página: </label>
-		<select ng-model="pageSize" class="form-control" ng-init="pageSize = 10">
+		<select ng-model="pageSize" class="form-control" ng-init="pageSize = 10" ng-change="changeCurrent()">
 			<option value=1>1</option>
 			<option value=2>2</option>
 			<option value=3>3</option>

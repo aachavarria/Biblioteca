@@ -9,9 +9,11 @@
 </head>
 
 <body ng-controller="BooksController as library">
+
+	<login ng-show="login == false"></login>
 	
-	<home></home>
-	
+	<home ng-show="login == true"></home>
+
 	<!-- /.container -->
 	<script src="js/jquery.js"></script>
 	<script src="js/angular.min.js"></script>

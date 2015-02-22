@@ -3,8 +3,8 @@ var app = angular.module('store', []);
 
 app.controller('BooksController',function($scope){
 	this.books = books;
-	$scope.user = "Usuario"
-	$scope.pass = "pass"
+	$scope.user = "";
+	$scope.pass = "";
 	$scope.login = false;
 	$scope.gender = gender;
 	$scope.favGender = "none";
@@ -15,12 +15,32 @@ app.controller('BooksController',function($scope){
     return Math.ceil($scope.data.length/$scope.pageSize);                
   }
 
+   this.login=function(){
+   	if(($scope.user == "user") && ($scope.pass = "pass") ){
+   		$scope.login = true;
+   	}else{
+   		alert("Usuario incorrecto y contraseña incorrecta. Intente con: user y pass");
+   	}
+                   
+  }
+
+  $scope.changeCurrent = function(){
+  	$scope.currentPage = 0
+  };
+
+
+  $scope.cerrar = function(){
+  	$scope.login = false;
+  	$scope.user = "";
+		$scope.pass = "";
+  };
+
 });
 
 //custom filter to slipt de books collection
 app.filter('startFrom', function() {
     return function(input, start) {
-        start = +start; //parse to int
+        start = + start; //parse to int
         return input.slice(start);
  		}
 });
@@ -86,24 +106,32 @@ app.directive('bookFavorite', function(){
 	};
 });
 
-app.directive('searchPanel', function(){
-	return{
-		restrict: 'E',
-		templateUrl: 'searchPanel.html',
-	};
-});
-
 app.directive('pagination', function(){
 	return{
 		restrict: 'E',
-		templateUrl: 'pagination.html',
+		templateUrl: 'pagination.html'
 	};
 });
+
+app.directive('searchPanel', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'searchPanel.html'
+	};
+});
+
 
 app.directive('home', function(){
 	return{
 		restrict: 'E',
 		templateUrl: 'home.html',
+	};
+});
+
+app.directive('login', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'login.html',
 	};
 });
 

@@ -1,4 +1,4 @@
-<div class="col-md-3 portfolio-item" ng-class="{ clear:$index % 4 == 0}" ng-repeat="books in library.books  | startFrom: currentPage*pageSize | filter: palabra | filter:search:strict | orderBy:orderProp | limitTo: pageSize ">
+<div class="col-md-3 portfolio-item" ng-class="{ clear:$index % 4 == 0}" ng-repeat="books in library.books  | filter: palabra | filter:search:strict | orderBy:orderProp | startFrom: currentPage*pageSize | limitTo: pageSize ">
 	<a href="#">
 		<img class="img-responsive img-item" ng-src="{{books.img}}">
 	</a>
